@@ -91,39 +91,39 @@ resource "azurerm_iothub" "test" {
 }
 
 # Key Vault
-resource "azurerm_key_vault" "key_vault" {
-    name                        = "${var.keyvault_name[local.environment]}"
-    location                    = "${azurerm_resource_group.k8s.location}"
-    resource_group_name         = "${azurerm_resource_group.k8s.name}"
-    enabled_for_disk_encryption = true
-    tenant_id                   = "${var.tenant_id}"
+# resource "azurerm_key_vault" "key_vault" {
+#     name                        = "${var.keyvault_name[local.environment]}"
+#     location                    = "${azurerm_resource_group.k8s.location}"
+#     resource_group_name         = "${azurerm_resource_group.k8s.name}"
+#     enabled_for_disk_encryption = true
+#     tenant_id                   = "${var.tenant_id}"
 
-    sku {
-        name = "standard"
-    }
+#     sku {
+#         name = "standard"
+#     }
 
-    access_policy {
-        tenant_id = "${var.tenant_id}"
-        object_id = "${module.service_principal.client_id}"
+#     access_policy {
+#         tenant_id = "${var.tenant_id}"
+#         object_id = "${module.service_principal.sp_id}"
 
-        key_permissions = [
-            "get",
-        ]
+#         key_permissions = [
+#             "get",
+#         ]
 
-        secret_permissions = [
-            "get",
-        ]
-    }
+#         secret_permissions = [
+#             "get", "set"
+#         ]
+#     }
 
-    network_acls {
-        default_action = "Deny"
-        bypass         = "AzureServices"
-    }
+#     # network_acls {
+#     #     default_action = "Deny"
+#     #     bypass         = "AzureServices"
+#     # }
 
-    tags {
-        Environment = "${local.environment}"
-    }
-}
+#     tags {
+#         Environment = "${local.environment}"
+#     }
+# }
 
 # AKS
 resource "azurerm_kubernetes_cluster" "k8s" {

@@ -95,19 +95,19 @@ variable "iothub_sku_capacity" {
 }
 
 # Key Vault
-variable "keyvault_name" {
-    description = "Key Vault name"
-    type = "map"
-    default = {
-        dev     = "contosokvaultdev"
-        prod    = "contosokvault"
-    }
-}
+# variable "keyvault_name" {
+#     description = "Key Vault name"
+#     type = "map"
+#     default = {
+#         dev     = "contosokvaultdev"
+#         prod    = "contosokvault"
+#     }
+# }
 
-variable "tenant_id" {
-    description = "Tenant ID for Key Vault"
-    default     = "72f988bf-86f1-41af-91ab-2d7cd011db47"
-}
+# variable "tenant_id" {
+#     description = "Tenant ID for Key Vault"
+#     default     = "your_tenant_id"
+# }
 
 # AKS
 variable k8s_cluster_name {
