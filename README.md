@@ -16,4 +16,5 @@ This lab is divided in the following steps:
 
 - [Step 1: Create Azure Resources](./docs/create-azure-resources.md)
 - [Step 2: Register gateway devices on IoT Hub](./docs/register-gateway-devices.md) 
-- [Step 3: Setup Kubernetes cluster](./docs/setup-aks-cluster)
+- [Step 3: Setup Kubernetes cluster](./docs/setup-aks-cluster.md)
+- [Step 4: Deploy Edge modules](./docs/deploy-edge-modules.md)
