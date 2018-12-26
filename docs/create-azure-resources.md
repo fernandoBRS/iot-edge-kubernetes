@@ -5,7 +5,9 @@ These are the Azure resources we need:
 | Resource | Description |
 | -------------- | -------------- |
 | [Azure Kubernetes Service (AKS)](https://docs.microsoft.com/en-us/azure/aks/intro-kubernetes) | Kubernetes cluster for IoT Edge deployments |
+| [Azure IoT Hub](https://docs.microsoft.com/en-us/azure/iot-hub/about-iot-hub) | Service for managing edge applications and devices |
 | [Azure Container Registry](https://docs.microsoft.com/en-us/azure/container-registry/container-registry-intro) | Repository for Docker images |
+| [Azure Key Vault](https://docs.microsoft.com/en-us/azure/key-vault/key-vault-overview) | Service for managing secrets and certificates |
 
 If you already have these services in your environment, feel free to reuse it. Otherwise, we are going to use [Terraform](https://www.terraform.io/) for building, changing, and versioning our infrastructure. 
 
