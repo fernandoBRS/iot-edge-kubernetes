@@ -6,7 +6,7 @@ Edge devices are often used as [gateways](https://docs.microsoft.com/en-us/azure
 
 ## Prerequisites
 
-- Azure resources tools: [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest) and [Terraform](https://docs.microsoft.com/en-us/azure/virtual-machines/linux/terraform-install-configure?toc=%2Fen-us%2Fazure%2Fterraform%2Ftoc.json&bc=%2Fen-us%2Fazure%2Fbread%2Ftoc.json#install-terraform)
+- Azure resources tools: [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest) with [IoT extension](https://github.com/Azure/azure-iot-cli-extension) and [Terraform](https://docs.microsoft.com/en-us/azure/virtual-machines/linux/terraform-install-configure?toc=%2Fen-us%2Fazure%2Fterraform%2Ftoc.json&bc=%2Fen-us%2Fazure%2Fbread%2Ftoc.json#install-terraform)
 - Kubernetes tools: [Helm CLI](https://docs.helm.sh/using_helm/#install-helm)
 - Linux or Windows 10 with [Windows Subsystem for Linux (WSL)](https://docs.microsoft.com/en-us/windows/wsl/about)
 
@@ -15,4 +15,5 @@ Edge devices are often used as [gateways](https://docs.microsoft.com/en-us/azure
 This lab is divided in the following steps:
 
 - [Step 1: Create Azure Resources](./docs/create-azure-resources.md)
-- [Step 2: Setup Kubernetes cluster](./docs/setup-aks-cluster)
+- [Step 2: Register gateway devices on IoT Hub](./docs/register-gateway-devices.md) 
+- [Step 3: Setup Kubernetes cluster](./docs/setup-aks-cluster)
