@@ -39,6 +39,76 @@ variable "container_registry_name" {
     }
 }
 
+# IoT Hub
+variable "iothub_storage_account_name" {
+    description = "Storage account name for IoT Hub"
+    type = "map"
+    default = {
+        dev     = "contosostgacctdev"
+        prod    = "contosostgacct"
+    }
+}
+
+variable "iothub_storage_container_name" {
+    description = "Storage container name for the IoT Hub"
+    type = "map"
+    default = {
+        dev     = "defaultdev"
+        prod    = "default"
+    }
+}
+
+variable "iothub_name" {
+    description = "IoT Hub name"
+    type = "map"
+    default = {
+        dev     = "contosohubdev"
+        prod    = "contosohub"
+    }
+}
+
+variable "iothub_sku_name" {
+    description = "IoT Hub SKU name"
+    type = "map"
+    default = {
+        dev     = "S1"
+        prod    = "S1"
+    }
+}
+
+variable "iothub_sku_tier" {
+    description = "IoT Hub SKU tier"
+    type = "map"
+    default = {
+        dev     = "Standard"
+        prod    = "Standard"
+    }
+}
+
+variable "iothub_sku_capacity" {
+    description = "IoT Hub SKU capacity"
+    type = "map"
+    default = {
+        dev     = "1"
+        prod    = "4"
+    }
+}
+
+# Key Vault
+variable "keyvault_name" {
+    description = "Key Vault name"
+    type = "map"
+    default = {
+        dev     = "contosokvaultdev"
+        prod    = "contosokvault"
+    }
+}
+
+variable "tenant_id" {
+    description = "Tenant ID for Key Vault"
+    default     = "72f988bf-86f1-41af-91ab-2d7cd011db47"
+}
+
 # AKS
 variable k8s_cluster_name {
     description = "Kubernetes cluster name"

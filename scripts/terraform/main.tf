@@ -39,6 +39,92 @@ resource "azurerm_container_registry" "acr" {
     storage_account_id  = "${azurerm_storage_account.acr_storage.id}"
 }
 
+# IoT Hub
+resource "azurerm_storage_account" "iothub_storage" {
+    name                     = "${var.iothub_storage_account_name[local.environment]}"
+    resource_group_name      = "${azurerm_resource_group.k8s.name}"
+    location                 = "${azurerm_resource_group.k8s.location}"
+    account_tier             = "Standard"
+    account_replication_type = "LRS"
+}
+
+resource "azurerm_storage_container" "iothub_storage_container" {
+    name                  = "${var.iothub_storage_container_name[local.environment]}"
+    resource_group_name   = "${azurerm_resource_group.k8s.name}"
+    storage_account_name  = "${azurerm_storage_account.iothub_storage.name}"
+    container_access_type = "private"
+}
+
+resource "azurerm_iothub" "test" {
+    name                = "${var.iothub_name[local.environment]}"
+    resource_group_name = "${azurerm_resource_group.k8s.name}"
+    location            = "${azurerm_resource_group.k8s.location}"
+
+    sku {
+        name     = "${var.iothub_sku_name[local.environment]}"
+        tier     = "${var.iothub_sku_tier[local.environment]}"
+        capacity = "${var.iothub_sku_capacity[local.environment]}"
+    }
+
+    endpoint {
+        type                       = "AzureIotHub.StorageContainer"
+        connection_string          = "${azurerm_storage_account.iothub_storage.primary_blob_connection_string}"
+        name                       = "export"
+        batch_frequency_in_seconds = 60
+        max_chunk_size_in_bytes    = 10485760
+        container_name             = "${var.iothub_storage_container_name[local.environment]}"
+        encoding                   = "Avro"
+        file_name_format           = "{iothub}/{partition}_{YYYY}_{MM}_{DD}_{HH}_{mm}"
+    }
+
+    route {
+        name           = "export"
+        source         = "DeviceMessages"
+        condition      = "true"
+        endpoint_names = ["export"]
+        enabled        = true
+    }
+
+    tags {
+        Environment = "${local.environment}"
+    }
+}
+
+# Key Vault
+resource "azurerm_key_vault" "key_vault" {
+    name                        = "${var.keyvault_name[local.environment]}"
+    location                    = "${azurerm_resource_group.k8s.location}"
+    resource_group_name         = "${azurerm_resource_group.k8s.name}"
+    enabled_for_disk_encryption = true
+    tenant_id                   = "${var.tenant_id}"
+
+    sku {
+        name = "standard"
+    }
+
+    access_policy {
+        tenant_id = "${var.tenant_id}"
+        object_id = "${module.service_principal.client_id}"
+
+        key_permissions = [
+            "get",
+        ]
+
+        secret_permissions = [
+            "get",
+        ]
+    }
+
+    network_acls {
+        default_action = "Deny"
+        bypass         = "AzureServices"
+    }
+
+    tags {
+        Environment = "${local.environment}"
+    }
+}
+
 # AKS
 resource "azurerm_kubernetes_cluster" "k8s" {
     name                = "${var.k8s_cluster_name[local.environment]}"
