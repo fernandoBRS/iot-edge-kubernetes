@@ -7,8 +7,7 @@ Edge devices are often used as [gateways](https://docs.microsoft.com/en-us/azure
 ## Prerequisites
 
 - Linux or Windows 10 with [Windows Subsystem for Linux (WSL)](https://docs.microsoft.com/en-us/windows/wsl/about)
-- Azure resources tools: [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest) with [IoT extension](https://github.com/Azure/azure-iot-cli-extension) and [Terraform](https://docs.microsoft.com/en-us/azure/virtual-machines/linux/terraform-install-configure?toc=%2Fen-us%2Fazure%2Fterraform%2Ftoc.json&bc=%2Fen-us%2Fazure%2Fbread%2Ftoc.json#install-terraform)
-- Kubernetes tools: [Helm CLI](https://docs.helm.sh/using_helm/#install-helm)
+- Azure resources tools: [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest) + [IoT extension](https://github.com/Azure/azure-iot-cli-extension), [Terraform](https://docs.microsoft.com/en-us/azure/virtual-machines/linux/terraform-install-configure?toc=%2Fen-us%2Fazure%2Fterraform%2Ftoc.json&bc=%2Fen-us%2Fazure%2Fbread%2Ftoc.json#install-terraform) and [Helm CLI](https://docs.helm.sh/using_helm/#install-helm)
 - Development tools: [Visual Studio Code](https://code.visualstudio.com/) + [Azure IoT Edge extension](https://marketplace.visualstudio.com/items?itemName=vsciot-vscode.azure-iot-edge)
 
 ## Getting Started
