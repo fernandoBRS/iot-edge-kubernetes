@@ -22,7 +22,7 @@
           "edgeAgent": {
             "type": "docker",
             "settings": {
-              "image": "mcr.microsoft.com/azureiotedge-agent:1.0",
+              "image": "azureiotedge/azureiotedge-agent:0.1.0-alpha",
               "createOptions": {}
             }
           },
@@ -90,6 +90,11 @@
         "storeAndForwardConfiguration": {
           "timeToLiveSecs": 7200
         }
+      }
+    },
+    "CSharpModule": {
+      "properties.desired":{
+          "TemperatureThreshold":25
       }
     }
   }
