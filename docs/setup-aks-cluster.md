@@ -8,6 +8,10 @@ Follow the tutorial described [here](https://docs.microsoft.com/en-us/azure/aks/
 az aks browse --resource-group resourceGroupName --name clusterName
 ```
 
+## Grant Kubernetes access to Azure Container Registry
+
+Before building and deploying the solution make sure your Kubernetes cluster has granted access to your Container Registry by following the tutorial described [here](https://docs.microsoft.com/en-us/azure/container-registry/container-registry-auth-aks).
+
 ## Install Tiller
 
 Create a service account on AKS to enable tye use of Tiller by running the following script in the `scripts/aks` folder:
