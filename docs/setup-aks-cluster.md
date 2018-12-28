@@ -10,7 +10,9 @@ az aks browse --resource-group resourceGroupName --name clusterName
 
 ## Grant Kubernetes access to Azure Container Registry
 
-Before building and deploying the solution make sure your Kubernetes cluster has granted access to your Container Registry by following the tutorial described [here](https://docs.microsoft.com/en-us/azure/container-registry/container-registry-auth-aks).
+Before building and deploying the solution make sure your Kubernetes cluster has granted access to your Container Registry by following the tutorial described [here](https://docs.microsoft.com/en-us/azure/container-registry/container-registry-auth-aks). The same script is also available in this repository, located on `scripts/aks/grant-acr-access.sh`.
+
+
 
 ## Install Tiller
 
