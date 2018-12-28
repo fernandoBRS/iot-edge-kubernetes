@@ -165,7 +165,7 @@ resource "azurerm_storage_account" "storage" {
     resource_group_name      = "${azurerm_kubernetes_cluster.k8s.node_resource_group}"
     location                 = "${azurerm_resource_group.k8s.location}"
     account_tier             = "Standard"
-    account_replication_type = "GRS"
+    account_replication_type = "LRS"
 
     tags {
         Environment = "${local.environment}"
