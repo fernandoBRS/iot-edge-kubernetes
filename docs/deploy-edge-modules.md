@@ -48,6 +48,12 @@ Then update the `image` property by the new image:
 
 ## Build and deploy the image to Container Registry
 
+### **Option 1: Build and deploy through Visual Studio Code**
+
+If you want to build and deploy the image through VS Code, folow the tutorial described [here](https://docs.microsoft.com/en-us/azure/iot-edge/tutorial-csharp-module#build-your-iot-edge-solution). 
+
+### **Option 2: Build and deploy through command line**
+
 Sign in to Docker by entering your Container Registry credentials:
 
 ```sh
@@ -66,8 +72,119 @@ Then push the image to Container Registry:
 docker push <REGISTRY_NAME>.azurecr.io/<MODULE_NAME>:0.0.1-amd64
 ```
 
-*Note: If you want to build and push the Edge module image through Visual Studio Code, follow the tutorial described [here](https://docs.microsoft.com/en-us/azure/iot-edge/tutorial-csharp-module#deploy-and-run-the-solution).*
+## Deploy the module to the Edge device
 
-## Deploy the solution
+### **Option 1: Deploy through Visual Studio Code**
 
-You can follow the tutorial described [here](https://docs.microsoft.com/en-us/azure/iot-edge/tutorial-csharp-module#build-your-iot-edge-solution) to deploy your solution on Visual Studio Code.
+If you built the image in the previous step through VS Code, it created a deployment manifest automatically in a `config` folder. Now follow the tutorial described [here](https://docs.microsoft.com/en-us/azure/iot-edge/tutorial-csharp-module#deploy-and-run-the-solution) to deploy the module based  on the manifest. 
+
+### **Option 2: Build and deploy through command line**
+
+If you built the image in the previous step through command line, you have to create a deployment manifest file before deploying the module to the edge device.
+
+In your module folder (in our case, `SampleModule`), create a `config` folder and then create a `deployment.<YOUR_ARCHITECTURE_VERSION>.json` file (`deployment.amd64.json` for example). Your manifest should have a structure similar to this one:
+
+```json
+{
+  "modulesContent": {
+    "$edgeAgent": {
+      "properties.desired": {
+        "schemaVersion": "1.0",
+        "runtime": {
+          "type": "docker",
+          "settings": {
+            "minDockerVersion": "v1.25",
+            "loggingOptions": "",
+            "registryCredentials": {
+              "<your_registry_name>": {
+                "username": "$CONTAINER_REGISTRY_USERNAME_<your_registry_name>",
+                "password": "$CONTAINER_REGISTRY_PASSWORD_<your_registry_name>",
+                "address": "<your_registry_name>.azurecr.io"
+              }
+            }
+          }
+        },
+        "systemModules": {
+          "edgeAgent": {
+            "type": "docker",
+            "settings": {
+              "image": "azureiotedge/azureiotedge-agent:0.1.0-alpha",
+              "createOptions": "{}"
+            }
+          },
+          "edgeHub": {
+            "type": "docker",
+            "status": "running",
+            "restartPolicy": "always",
+            "settings": {
+              "image": "mcr.microsoft.com/azureiotedge-hub:1.0",
+              "createOptions": "{\"HostConfig\":{\"PortBindings\":{\"5671/tcp\":[{\"HostPort\":\"5671\"}],\"8883/tcp\":[{\"HostPort\":\"8883\"}],\"443/tcp\":[{\"HostPort\":\"443\"}]}}}"
+            }
+          }
+        },
+        "modules": {
+          "tempSensor": {
+            "version": "1.0",
+            "type": "docker",
+            "status": "running",
+            "restartPolicy": "always",
+            "settings": {
+              "image": "mcr.microsoft.com/azureiotedge-simulated-temperature-sensor:1.0",
+              "createOptions": "{}"
+            }
+          },
+          "<MODULE_NAME>": {
+            "version": "1.0",
+            "type": "docker",
+            "status": "running",
+            "restartPolicy": "always",
+            "settings": {
+              "image": "<your_registry_name>.azurecr.io/<image_name>:0.0.1-<architecture_version>",
+              "createOptions": "{}"
+            }
+          }
+        }
+      }
+    },
+    "$edgeHub": {
+      "properties.desired": {
+        "schemaVersion": "1.0",
+        "routes": {
+          "SampleModuleToIoTHub": "FROM /messages/modules/<MODULE_NAME>/outputs/* INTO $upstream",
+          "sensorToSampleModule": "FROM /messages/modules/tempSensor/outputs/temperatureOutput INTO BrokeredEndpoint(\"/modules/SampleModule/inputs/input1\")"
+        },
+        "storeAndForwardConfiguration": {
+          "timeToLiveSecs": 7200
+        }
+      }
+    },
+    "CSharpModule": {
+      "properties.desired": {
+        "TemperatureThreshold": 25
+      }
+    }
+  }
+}
+```
+
+For more info about the manifest, check the article available [here](https://docs.microsoft.com/en-us/azure/iot-edge/module-composition).
+
+After configuring the manifest, deploy your module to your edge device:
+
+```sh
+az iot edge set-modules --device-id [device id] --hub-name [hub name] --content [file path]
+```
+
+## Verify the deployment
+
+Now you can check if your modules were deployed successfully through `kubectl` command line or Kubernetes dashboard (make sure you're selected the `microsoft-azure-devices-edge` namespace):
+
+![Kubernetes dashboard](./images/kubernetes-dashboard.JPG)
+
+You can see that 5 pods were created: 
+
+- Temperature sensor and sample modules
+- Edge runtime composed by edge agent + edge hub
+- Edge security deamon (iotedged)
+
+![Kubernetes edge pods](./images/kubernetes-pods.JPG)

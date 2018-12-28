@@ -1,0 +1,1 @@
+- Edge runtime = edge hub and edge agent
