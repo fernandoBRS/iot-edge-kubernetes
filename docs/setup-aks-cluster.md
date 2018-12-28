@@ -42,7 +42,7 @@ The Edge Helm chart creates two important pods: **Edge Security Deamon (iotedged
 helm repo add edgek8s https://edgek8s.blob.core.windows.net/helm/
 ```
 
-Now open the `deploy-edge-helm.sh` script located in `scripts/iot-hub` folder in a text editor and update variables:
+Now open the `deploy-edge-helm.sh` script located in `scripts/aks` folder in a text editor and update variables:
 
 ```sh
 # Variables

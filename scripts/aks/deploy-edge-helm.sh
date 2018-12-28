@@ -1,5 +1,5 @@
 # Variables
-keyvault_name="contosokvaultdev"
+keyvault_name="your_keyvault_name"
 device_prefix="gateway"
 
 # Get the device connection string on Key Vault
