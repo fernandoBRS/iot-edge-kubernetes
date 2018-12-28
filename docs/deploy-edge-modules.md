@@ -46,10 +46,28 @@ Then update the `image` property by the new image:
 
 ***Important:** At the time of this writing, the edge agent image is on version **0.1.0-alpha**. Make sure to check if there is a new version available.*   
 
-## Grant Kubernetes access to Azure Container Registry
+## Build and deploy the image to Container Registry
 
-Before building and deploying the solution make sure your Kubernetes cluster has granted access to your Container Registry, otherwise you will receive the `unauthorized: authentication required` error. If you haven't done that, follow the tutorial described [here](https://docs.microsoft.com/en-us/azure/container-registry/container-registry-auth-aks).
+Sign in to Docker by entering your Container Registry credentials:
 
-## Build and Deploy the solution
+```sh
+docker login -u <ACR username> -p <ACR password> <ACR login server>
+```
 
-You can follow the tutorial described [here](https://docs.microsoft.com/en-us/azure/iot-edge/tutorial-csharp-module#build-your-iot-edge-solution) to build and deploy your solution on Visual Studio Code.
+Access your module folder (if you're using the sample available in this repo, the path is `src/EdgeSolution/modules/SampleModule`)  and build the image:
+
+```sh
+docker build -t <REGISTRY_NAME>.azurecr.io/<MODULE_NAME>:0.0.1-amd64 .
+```
+
+Then push the image to Container Registry:
+
+```sh
+docker push <REGISTRY_NAME>.azurecr.io/<MODULE_NAME>:0.0.1-amd64
+```
+
+*Note: If you want to build and push the Edge module image through Visual Studio Code, follow the tutorial described [here](https://docs.microsoft.com/en-us/azure/iot-edge/tutorial-csharp-module#deploy-and-run-the-solution).*
+
+## Deploy the solution
+
+You can follow the tutorial described [here](https://docs.microsoft.com/en-us/azure/iot-edge/tutorial-csharp-module#build-your-iot-edge-solution) to deploy your solution on Visual Studio Code.
