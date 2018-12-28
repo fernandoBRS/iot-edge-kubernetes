@@ -157,3 +157,17 @@ resource "azurerm_kubernetes_cluster" "k8s" {
         Environment = "${local.environment}"
     }
 }
+
+# Storage Account
+
+resource "azurerm_storage_account" "storage" {
+    name                     = "${var.k8s_storage_account_name[local.environment]}"
+    resource_group_name      = "${azurerm_kubernetes_cluster.k8s.node_resource_group}"
+    location                 = "${azurerm_resource_group.k8s.location}"
+    account_tier             = "Standard"
+    account_replication_type = "GRS"
+
+    tags {
+        Environment = "${local.environment}"
+    }
+}

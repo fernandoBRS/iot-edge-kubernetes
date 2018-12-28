@@ -180,3 +180,13 @@ variable "sp_name" {
 variable "sp_least_privilege" {
     default = false
 }
+
+# Storage Account
+variable "k8s_storage_account_name" {
+    description = "Storage account name used for Kubernetes persistent storage"
+    type = "map"
+    default = {
+        dev     = "contosostgaccntdev"
+        prod    = "contosostgaccnt"
+    }
+}
