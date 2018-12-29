@@ -4,6 +4,8 @@ Edge devices are often used as [gateways](https://docs.microsoft.com/en-us/azure
 
 **Azure IoT Edge on Kubernetes** allows us to introduce some redundancy at the gateway layer so that workloads can be migrated over to another gateway device in the event of a complete device failure.
 
+![Architecture Overview](./docs/images/architecture-overview.JPG)
+
 ## Prerequisites
 
 - Linux or Windows 10 with [Windows Subsystem for Linux (WSL)](https://docs.microsoft.com/en-us/windows/wsl/about)
