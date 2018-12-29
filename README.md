@@ -18,4 +18,4 @@ This lab is divided in the following steps:
 - [Step 2: Register gateway devices on IoT Hub](./docs/register-gateway-devices.md) 
 - [Step 3: Setup Kubernetes cluster](./docs/setup-aks-cluster.md)
 - [Step 4: Deploy Edge modules](./docs/deploy-edge-modules.md)
-- [Step 5: Setup Persistent Storage for Edge Security Deamon](./docs/deploy-edge-modules.md)
+- [Step 5: Setup Persistent Storage for Edge Security Deamon](./docs/persistent-storage-deamon.md)
