@@ -61,3 +61,6 @@ Then run the script:
 ./deploy-helm-pvc.sh
 ```
 
+It can take some seconds to provision all resources. The script will deploy the Edge Helm chart configured to use persistent volume and will automatically create the [Persistent Volume Claim (PVC)](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#persistentvolumeclaims). Now you can check if the PVC was created successfully through the `kubectl` or the Kubernetes dashboard:
+
+![Kubernetes dashboard](./images/kubernetes-dashboard-pvc.JPG)
