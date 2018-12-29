@@ -188,3 +188,7 @@ You can see that 5 pods were created:
 - Edge security deamon (iotedged)
 
 ![Kubernetes edge pods](./images/kubernetes-pods.JPG)
+
+## Next Steps
+
+In the next step we are going to see how to define persistent volume for the Edge Security Deamon (iotedged) to improve high availability benefits: [Persistent Storage for Edge Security Deamon (iotedged)](./persistent-storage-deamon.md).

@@ -38,3 +38,7 @@ Then start the execution plan and wait for all resources to be created:
 ```sh
 terraform apply
 ```
+
+## Next Steps
+
+At this point you have provisioned all Azure resources we need. In the next step, we are going to register a gateway device on IoT Hub by following the tutorial described [here](./register-gateway-devices.md).
