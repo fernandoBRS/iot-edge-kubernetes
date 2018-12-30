@@ -4,7 +4,22 @@ Edge devices are often used as [gateways](https://docs.microsoft.com/en-us/azure
 
 **Azure IoT Edge on Kubernetes** allows us to introduce some redundancy at the gateway layer so that workloads can be migrated over to another gateway device in the event of a complete device failure.
 
+## Bring your own cluster
+
+In a real world scenario,  the solution is designed to enable IoT Edge deployments on existing Kubernetes clusters to provide high availability. This is what we call **"bring-your-own-cluster"** scenario where the assumption is that an existing on-prem cluster is already available and ready to go. You can simply deploy your IoT Edge modules as another Kubernetes application and hit the ground running!
+
 ![Architecture Overview](./docs/images/architecture-overview.JPG)
+
+## Concepts
+
+Before running this lab, it's important to understand concepts behind all components and how they interact with each other in the Kubernetes cluster.
+
+- [Edge Runtime on Kubernetes]() *(work in progress)*
+- [Edge Security Deamon (iotedged)]() *(work in progress)*
+
+## About the Lab
+
+In this lab we are going to get our hands on the IoT Edge on Kubernetes. It is based on [Azure Kubernetes Service (AKS)](https://docs.microsoft.com/en-us/azure/aks/intro-kubernetes) in order to simplify the cluster deployment and management, but you have to consider an on-prem cluster in a real world scenario.
 
 ## Prerequisites
 
