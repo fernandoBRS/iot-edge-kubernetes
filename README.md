@@ -12,10 +12,7 @@ In a real world scenario,  the solution is designed to enable IoT Edge deploymen
 
 ## Concepts
 
-Before running this lab, it's important to understand concepts behind all components and how they interact with each other in the Kubernetes cluster.
-
-- [Edge Runtime on Kubernetes]() *(work in progress)*
-- [Edge Security Deamon (iotedged)]() *(work in progress)*
+Before running this lab, it's important to understand concepts behind all components and how they interact with each other in the Kubernetes cluster. Take a look on the [Concepts](./docs/concepts.md) section to get detailed info.
 
 ## About the Lab
 
