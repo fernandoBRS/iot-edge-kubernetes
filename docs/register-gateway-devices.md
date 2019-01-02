@@ -17,7 +17,7 @@ Then run the script:
 ./register-devices.sh
 ```
 
-The script will create two edge devices – `gateway-001` and `gateway-002` – and will store both device connection strings as secrets in a new [Azure Key Vault](https://docs.microsoft.com/en-us/azure/key-vault/key-vault-overview). We are going to use key vault to protect device connection strings and to avoid hardcode them in a script.
+The script will create an edge device called `gateway-001` and will store the device connection strings as a secret in a new [Azure Key Vault](https://docs.microsoft.com/en-us/azure/key-vault/key-vault-overview). We are going to use key vault to protect the device connection string and to avoid hardcode it in a script.
 
 ## Next Steps
 
