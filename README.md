@@ -1,4 +1,4 @@
-# Azure IoT Edge on Kubernetes: High Availability on Edge Computing
+# Azure IoT Edge on Kubernetes: High Availability on the Edge 
 
 Edge devices are often used as [gateways](https://docs.microsoft.com/en-us/azure/iot-edge/iot-edge-as-gateway) to serve as a point of aggregation and compute for other devices/sensors. Configuring and managing gateway devices is challenging in systems that require high availability due the fact they tend to be a single point of failure.
 
@@ -16,7 +16,7 @@ Before running this lab, it's important to understand concepts behind all compon
 
 ## About the Lab
 
-In this lab we are going to get our hands on the IoT Edge on Kubernetes. It is based on [Azure Kubernetes Service (AKS)](https://docs.microsoft.com/en-us/azure/aks/intro-kubernetes) in order to simplify the cluster deployment and management, but you have to consider an on-prem cluster in a real world scenario.
+In this lab we are going to get our hands on the IoT Edge on Kubernetes. It is based on [Azure Kubernetes Service (AKS)](https://docs.microsoft.com/en-us/azure/aks/intro-kubernetes) with Linux nodes in order to simplify the cluster deployment and management, but you have to consider an on-prem cluster in a real world scenario.
 
 ## Prerequisites
 
