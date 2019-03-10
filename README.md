@@ -20,7 +20,7 @@ In this lab we are going to get our hands on the IoT Edge on Kubernetes. It is b
 
 ## Prerequisites
 
-- Linux or Windows 10 with [Windows Subsystem for Linux (WSL)](https://docs.microsoft.com/en-us/windows/wsl/about)
+- Linux or [Windows Subsystem for Linux (WSL)](https://docs.microsoft.com/en-us/windows/wsl/about)
 - Azure resources tools: [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest) + [IoT extension](https://github.com/Azure/azure-iot-cli-extension), [Terraform](https://docs.microsoft.com/en-us/azure/virtual-machines/linux/terraform-install-configure?toc=%2Fen-us%2Fazure%2Fterraform%2Ftoc.json&bc=%2Fen-us%2Fazure%2Fbread%2Ftoc.json#install-terraform) and [Helm CLI](https://docs.helm.sh/using_helm/#install-helm)
 - Development tools: [Visual Studio Code](https://code.visualstudio.com/) + [Azure IoT Edge extension](https://marketplace.visualstudio.com/items?itemName=vsciot-vscode.azure-iot-edge)
 
