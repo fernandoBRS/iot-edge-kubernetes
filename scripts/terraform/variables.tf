@@ -1,97 +1,102 @@
-variable "workspace_to_environment_map" {
-    description = "A set of known environments (workspaces)"
-    type = "map"
-    default = {
-        dev     = "dev"
-        prod    = "prod"
-    }
+# Service Principal
+variable "sp_name" {
+    description = "Service Principal name"
+    default = "contoso-sp-aks-dev"
+}
+
+variable "sp_least_privilege" {
+    default = false
 }
 
 # Resource Group
 variable resource_group_name {
     description = "Resource group name"
-    type = "map"
-    default = {
-        dev     = "rg-contoso-dev"
-        prod    = "rg-contoso"
-    }
+    default = "rg-contoso-dev"
 }
 
 variable location {
     default = "East US"
 }
 
-# Container Registry
+# Storage Account (ACR)
 variable "storage_account_name" {
-    description = "Storage account name that will be used for Container Registry"
-    type = "map"
-    default = {
-        dev     = "contosostgacctdev"
-        prod    = "contosostgacct"
-    }
+    description = "Storage account name"
+    default = "contosostgacctdev"
 }
-variable "container_registry_name" {
-    description = "Container Registry name"
-    type = "map"
-    default = {
-        dev     = "contosoregistrydev"
-        prod    = "contosoregistry"
-    }
+
+variable "storage_account_tier" {
+    description = "Storage account tier"
+    default = "Standard"
+}
+
+variable "storage_account_replication_type" {
+    description = "Storage account replication type"
+    default = "GRS"
+}
+
+# Container Registry
+
+variable "acr_name" {
+    description = "ACR name"
+    default = "contosoregistrydev"
+}
+
+variable "acr_admin_enabled" {
+    description = "ACR admin enabling flag"
+    default = true
+}
+
+variable "acr_sku" {
+    description = "ACR SKU type"
+    default = "Classic"
+}
+
+# Storage Account (IoT Hub)
+variable "iothub_storage_account_name" {
+    description = "Storage account name for IoT Hub"
+    default = "contosostgacctdev"
+}
+
+variable "iothub_storage_account_tier" {
+    description = "Storage account tier"
+    default = "Standard"
+}
+
+variable "iothub_storage_account_replication_type" {
+    description = "Storage account replication type"
+    default = "LRS"
+}
+
+# Storage container (IoT Hub)
+variable "iothub_storage_container_name" {
+    description = "Storage container name for the IoT Hub"
+    default = "defaultdev"
+}
+
+variable "iothub_storage_container_access_type" {
+    description = "Storage container access type"
+    default = "private"
 }
 
 # IoT Hub
-variable "iothub_storage_account_name" {
-    description = "Storage account name for IoT Hub"
-    type = "map"
-    default = {
-        dev     = "contosostgacctdev"
-        prod    = "contosostgacct"
-    }
-}
-
-variable "iothub_storage_container_name" {
-    description = "Storage container name for the IoT Hub"
-    type = "map"
-    default = {
-        dev     = "defaultdev"
-        prod    = "default"
-    }
-}
-
 variable "iothub_name" {
     description = "IoT Hub name"
-    type = "map"
-    default = {
-        dev     = "contosohubdev"
-        prod    = "contosohub"
-    }
+    default = "contosohubdev"
 }
 
 variable "iothub_sku_name" {
     description = "IoT Hub SKU name"
-    type = "map"
-    default = {
-        dev     = "S1"
-        prod    = "S1"
-    }
+    default = "S1"
 }
 
 variable "iothub_sku_tier" {
     description = "IoT Hub SKU tier"
-    type = "map"
-    default = {
-        dev     = "Standard"
-        prod    = "Standard"
-    }
+    default = "Standard"
 }
 
 variable "iothub_sku_capacity" {
     description = "IoT Hub SKU capacity"
-    type = "map"
-    default = {
-        dev     = "1"
-        prod    = "4"
-    }
+    default = "1"
 }
 
 # Key Vault
@@ -112,81 +117,35 @@ variable "iothub_sku_capacity" {
 # AKS
 variable k8s_cluster_name {
     description = "Kubernetes cluster name"
-    type = "map"
-    default = {
-        dev     = "contosoclusterdev"
-        prod    = "contosocluster"
-    }
+    default = "contosoclusterdev"
 }
 
 variable "k8s_dns_prefix" {
     description = "Kubernetes DNS name prefix"
-    type = "map"
-    default = {
-        dev     = "contosoclusterdev"
-        prod    = "contosocluster"
-    }
+    default = "contosoclusterdev"
 }
 
 variable "k8s_agent_count" {
     description = "Number of Kubernetes nodes"
-    type = "map"
-    default = {
-        dev     = 1
-        prod    = 3
-    }
+    default = 1
 }
 
 variable "k8s_vm_size" {
     description = "Kubernetes VM size"
-    type = "map"
-    default = {
-        dev     = "Standard_B2s"
-        prod    = "Standard_DS2_v2"
-    }
+    default = "Standard_B2s"
 }
 
 variable "k8s_os_disk_size" {
     description = "Kubernetes OS disk size"
-    type = "map"
-    default = {
-        dev     = 30
-        prod    = 30
-    }
-}
-
-variable "k8s_linux_profile_username" {
-    description = "Username for authentication to the AKS linux agent VMs in the cluster"
-    type = "map"
-    default = {
-        dev     = "contosoadmindev"
-        prod    = "contosoadmin"
-    }
+    default = 30
 }
 
 variable "k8s_ssh_public_key" {
     default = "~/.ssh/id_rsa.pub"
 }
 
-variable "sp_name" {
-    description = "Service Principal name"
-    type = "map"
-    default = {
-        dev     = "contoso-sp-aks-dev"
-        prod    = "contoso-sp-aks"
-    }
-}
-
-variable "sp_least_privilege" {
-    default = false
-}
-
 # Storage Account
 variable "k8s_storage_account_name" {
     description = "Storage account name used for Kubernetes persistent storage"
-    type = "map"
-    default = {
-        dev     = "contosostgaccntdev"
-        prod    = "contosostgaccnt"
-    }
+    default = "contosostgaccntdev"
 }
