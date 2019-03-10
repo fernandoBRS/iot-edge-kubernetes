@@ -11,6 +11,19 @@ These are the Azure resources we are going to use:
 
 If you already have these services in your environment, feel free to reuse it. Otherwise, we are going to use [Terraform](https://www.terraform.io/) for building, changing, and versioning our infrastructure. 
 
+## Create Service Principal
+
+The AKS cluster requires a Service Principal. Run the following script to create a new one:
+
+    az ad sp create-for-rbac --name YourServicePrincipalName 
+
+Copy the `appId` and `password` generated and export them as Terraform variables:
+
+```sh
+export TF_VAR_client_id=<your-client-id>
+export TF_VAR_client_secret=<your-client-secret>
+```
+
 ## Terraform setup
 
 Terraform workspaces allows you to manage multiple distinct sets of infrastructure resources/environments. In the `scripts/terraform` folder, open the `variables.tf` file and edit all variable values you want in your environment.
