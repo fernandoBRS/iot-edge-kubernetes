@@ -144,6 +144,15 @@ variable "k8s_ssh_public_key" {
     default = "~/.ssh/id_rsa.pub"
 }
 
+# Service Principal
+variable "client_id" {
+    description = "Service Principal client ID"
+}
+
+variable "client_secret" {
+    description = "Service Principal secret"
+}
+
 # Storage Account
 variable "k8s_storage_account_name" {
     description = "Storage account name used for Kubernetes persistent storage"

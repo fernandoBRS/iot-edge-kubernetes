@@ -2,14 +2,6 @@ provider "azurerm" {
     version = "~>1.19"
 }
 
-# Create a service principal for use in the AKS cluster
-module "service_principal" {
-  source = "service_principal"
-
-  sp_least_privilege = "${var.sp_least_privilege}"
-  sp_name             = "${var.sp_name}"
-}
-
 # Resource Group
 resource "azurerm_resource_group" "k8s" {
     name     = "${var.resource_group_name}"
@@ -111,8 +103,8 @@ resource "azurerm_kubernetes_cluster" "k8s" {
     }
 
     service_principal {
-        client_id     = "${module.service_principal.client_id}"
-        client_secret = "${module.service_principal.client_secret}"
+        client_id     = "${var.client_id}"
+        client_secret = "${var.client_secret}"
     }
 
     tags {
