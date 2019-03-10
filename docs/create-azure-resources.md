@@ -1,6 +1,6 @@
-# Step 1: Create Azure Resources
+# Create Azure Resources
 
-These are the Azure resources we need:
+These are the Azure resources we are going to use:
 
 | Resource | Description |
 | -------------- | -------------- |
@@ -15,18 +15,6 @@ If you already have these services in your environment, feel free to reuse it. O
 
 Terraform workspaces allows you to manage multiple distinct sets of infrastructure resources/environments. In the `scripts/terraform` folder, open the `variables.tf` file and edit all variable values you want in your environment.
 
-Run the script to create `dev` and `prod` workspaces:
-
-```sh
-./create-workspaces.sh 
-```
-
-Select the development workspace:
-
-```sh
-terraform workspace select dev
-```
-
 Initialize Terraform and install the Azure provider:
 
 ```sh
@@ -39,6 +27,6 @@ Then start the execution plan and wait for all resources to be created:
 terraform apply
 ```
 
-## Next Steps
+## Next Step
 
-At this point you have provisioned all Azure resources we need. In the next step, we are going to register a gateway device on IoT Hub by following the tutorial described [here](./register-gateway-devices.md).
+- [Register gateway devices on IoT Hub](./register-gateway-devices.md)
